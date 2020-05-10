@@ -1,0 +1,3 @@
+export const REQUEST_HEADLINES='REQUEST_HEADLINES' //This action will be dispatched when we request data. It will set isLoading to true
+export const GET_HEADLINES_FAILURE='GET_HEADLINES_FAILURE' // This action will be dispatched when we receive a response for a successful API call. It will set isLoading to false and will include a headlines property with the API response's payload.
+export const GET_HEADLINES_SUCCESS='GET_HEADLINES_SUCCESS' //This action will be dispatched when we receive a response from a failed API call. It will set isLoading to false and will include an error property the API response's error message.
