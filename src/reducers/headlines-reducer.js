@@ -11,6 +11,11 @@ export default (state = defaultState, action) => {
       return Object.assign({}, state, {
         isLoading: true
       });
+    case c.GET_HEADLINES_SUCCESS:
+      return Object.assign({}, state, {
+        isLoading: false,
+        headlines: action.headlines
+      });
     default:
       return state;
   }
