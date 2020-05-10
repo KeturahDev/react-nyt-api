@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './reducers/';
+import middlewareExample from './middleware/middleware-example';
+
+const store = createStore(reducer, applyMiddleware(middlewareExample));
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode store={store}>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
