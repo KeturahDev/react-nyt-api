@@ -8,7 +8,7 @@ Practice application to explore making api calls in react with the NYT Top Stori
 
 * download via git clone https://github.com/KeturahDev/react-nyt-api.git or download zip 
 * open in code editor
-* Recieve an api key via (Getting Started)[https://developer.nytimes.com/get-started] instructions
+* Recieve an api key via (https://developer.nytimes.com/get-started)[Getting started] instructions
 * Add .env to gitignore file
 * place ```REACT_APP_API_KEY=[Your-api-key-here]``` in env file (without the brackets)
 * view application with ```npm run start``` in terminal
