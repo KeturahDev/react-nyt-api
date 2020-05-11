@@ -1,42 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { makeApiCall } from './../actions';
+
 
 class Headlines extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      headlines: []
-    };
-  }
-
-  makeApiCall = () => {
-    fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_API_KEY}`) // fetch returns a promise, so we can use .then...
-      .then(response => response.json()) // if promise returns a value, it converts whats it into json
-      .then( //if that returns a value, then it runs the bellow function
-        (jsonifiedResponse) => {
-          this.setState({
-            isLoaded: true,
-            headlines: jsonifiedResponse.results
-          });
-        })
-      .catch((error) => { // promise is rejected (i think?)
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() { //potentially risky for hitting api limitd quickly due to new call with every component reload. avoid local server running to avoid component reloads.
-    this.makeApiCall()
+    const { dispatch } = this.props;
+    dispatch(makeApiCall());
   }
 
   render() {
-    const { error, isLoaded, headlines } = this.state;
+    const { error, isLoading, headlines } = this.props;
     if (error) {
       return <React.Fragment>Error: {error.message}</React.Fragment>;
-    } else if (!isLoaded) {
+    } else if (isLoading) {
       return <React.Fragment>Loading...</React.Fragment>;
     } else {
        return (
@@ -56,5 +37,12 @@ class Headlines extends React.Component {
     }
   }
 }
+const mapStateToProps = state => {
+  return {
+    headlines: state.headlines,
+    isLoading: state.isLoading,
+    error: state.error
+  }
+}
 
-export default Headlines;
+export default connect(mapStateToProps)(Headlines);
